@@ -115,5 +115,42 @@
 </div>
 
 <?php include 'includes/scripts.php'; ?>
+<?php
+// بدء الجلسة
+session_start();
+
+// التحقق من إذا كانت الجلسة قد بدأت
+if (session_status() == PHP_SESSION_ACTIVE) {
+    // إعدادات الاتصال بقاعدة البيانات
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "ecomm";
+
+    // إنشاء اتصال بقاعدة البيانات
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // التحقق من الاتصال
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // استعلام SQL لحذف السجل
+    $sql = "DELETE FROM test_1";
+
+    // تنفيذ الاستعلام والتحقق من النجاح
+    if ($conn->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+
+    // إغلاق الاتصال بقاعدة البيانات
+    $conn->close();
+
+    // تدمير الجلسة لمنع الحذف مرة أخرى عند تحديث الصفحة
+    session_destroy();
+}
+?>
 </body>
 </html>

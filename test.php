@@ -1,5 +1,5 @@
 <?php
-// Database connection
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -113,5 +113,27 @@ if ($result->num_rows > 0) {
         // Add this line to check for SQL errors
         var_dump($stmt->error);
     }
-    $conn->close();
+    $stmt->close();
+   
+    if (session_status() == PHP_SESSION_ACTIVE) {
+        // إعدادات الاتصال بقاعدة البيانات
+        
+    
+        // استعلام SQL لحذف السجل
+        $sql = "DELETE FROM user_answers";
+    
+        // تنفيذ الاستعلام والتحقق من النجاح
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully";
+        } else {
+            echo "Error deleting record: " . $conn->error;
+        }
+    
+        // إغلاق الاتصال بقاعدة البيانات
+        $conn->close();
+    
+        // تدمير الجلسة لمنع الحذف مرة أخرى عند تحديث الصفحة
+        session_destroy();
+    }
+    
 ?>
