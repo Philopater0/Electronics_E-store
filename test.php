@@ -113,6 +113,7 @@ if ($result->num_rows > 0) {
         // Add this line to check for SQL errors
         var_dump($stmt->error);
     }
+   
     $stmt->close();
    
     if (session_status() == PHP_SESSION_ACTIVE) {
@@ -129,11 +130,12 @@ if ($result->num_rows > 0) {
             echo "Error deleting record: " . $conn->error;
         }
     
+
+        
         // إغلاق الاتصال بقاعدة البيانات
         $conn->close();
     
         // تدمير الجلسة لمنع الحذف مرة أخرى عند تحديث الصفحة
         session_destroy();
-    }
-    
+    }  
 ?>
