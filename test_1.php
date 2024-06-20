@@ -60,4 +60,6 @@ try {
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+header("Location: recommendation.php");
+    exit;
 ?>

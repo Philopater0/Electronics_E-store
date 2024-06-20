@@ -117,7 +117,7 @@
 <?php include 'includes/scripts.php'; ?>
 <?php
 // بدء الجلسة
-session_start();
+
 
 // التحقق من إذا كانت الجلسة قد بدأت
 if (session_status() == PHP_SESSION_ACTIVE) {
@@ -140,7 +140,7 @@ if (session_status() == PHP_SESSION_ACTIVE) {
 
     // تنفيذ الاستعلام والتحقق من النجاح
     if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
+        echo "";
     } else {
         echo "Error deleting record: " . $conn->error;
     }
@@ -152,5 +152,6 @@ if (session_status() == PHP_SESSION_ACTIVE) {
     session_destroy();
 }
 ?>
+<?php include 'includes/remove.php'; ?>
 </body>
 </html>

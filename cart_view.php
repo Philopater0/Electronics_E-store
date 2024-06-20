@@ -196,5 +196,6 @@ paypal.Button.render({
 
 }, '#paypal-button');
 </script>
+<?php include 'includes/remove.php'; ?>
 </body>
 </html>

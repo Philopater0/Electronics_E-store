@@ -75,5 +75,6 @@
 </div>
 
 <?php include 'includes/scripts.php'; ?>
+<?php include 'includes/remove.php'; ?>
 </body>
 </html>

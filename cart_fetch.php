@@ -70,4 +70,5 @@
 	echo json_encode($output);
 
 ?>
+<?php include 'includes/remove.php'; ?>
 

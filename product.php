@@ -119,5 +119,6 @@ $(function(){
 
 });
 </script>
+<?php include 'includes/remove.php'; ?>
 </body>
 </html>

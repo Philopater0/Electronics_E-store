@@ -96,3 +96,4 @@
 <?php include 'includes/scripts.php'; ?>
 </body>
 </html>
+<?php include 'includes/remove.php'; ?>

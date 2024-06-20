@@ -43,3 +43,4 @@
 	header('location: profile.php');
 	
 ?>
+<?php include 'includes/remove.php'; ?>
