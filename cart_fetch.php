@@ -10,7 +10,7 @@
 			$stmt->execute(['user_id'=>$user['id']]);
 			foreach($stmt as $row){
 				$output['count']++;
-				$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+				$image = $row['photo'];
 				$productname = (strlen($row['prodname']) > 30) ? substr_replace($row['prodname'], '...', 27) : $row['prodname'];
 				$output['list'] .= "
 					<li>
@@ -70,5 +70,5 @@
 	echo json_encode($output);
 
 ?>
-<?php include 'includes/remove.php'; ?>
+
 

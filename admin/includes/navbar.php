@@ -7,14 +7,14 @@
     <span class="logo-lg"><b>Ecommerce</b>Site</span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
-  <nav class="navbar navbar-static-top">
+  <nav class="navbar navbar-static-top" style = "background-color:black;">
     <!-- Sidebar toggle button-->
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
       <span class="sr-only">Toggle navigation</span>
     </a>
 
     <div class="navbar-custom-menu">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" style = "background-color:black;">
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -23,7 +23,7 @@
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
-            <li class="user-header">
+            <li class="user-header" style = "background-color:black;">
               <img src="<?php echo (!empty($admin['photo'])) ? '../images/'.$admin['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
 
               <p>

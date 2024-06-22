@@ -48,6 +48,6 @@ $sql = "DELETE FROM test_1";
     $conn->close();
 
     // تدمير الجلسة لمنع الحذف مرة أخرى عند تحديث الصفحة
-    session_destroy();
+    
 } 
 ?>

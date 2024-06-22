@@ -7,15 +7,15 @@
 <?php include 'includes/header.php'; ?>
 <html style="background-color:#f1f4f2;">
 <body class=" skin-blue layout-top-nav"style="background-color:#f1f4f2;">
-<div class="wrapper">
+<div class="wrapper"style="background-color:#f1f4f2;">
 
 	<?php include 'includes/navbar.php'; ?>
 	 
-	  <div class="content-wrapper">
+	  <div class="content-wrapper"style="background-color:#f1f4f2;">
 	    <div class="container">
 
 	      <!-- Main content -->
-	      <section class="content">
+	      <section class="content"style="background-color:#f1f4f2;">
 	        <div class="row">
 	        	<div class="col-sm-9">
 	        		<?php

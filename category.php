@@ -41,18 +41,18 @@
 						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row) {
-						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$imageURL = $row['photo'];
 						    	$inc = ($inc == 3) ? 1 : $inc + 1;
 	       						if($inc == 1) echo "<div class='row'>";
 	       						echo "
 								   <div class='col-sm-4' style='margin-bottom: 20px;'>
 								   <div class='box box-solid' style='border: 1px solid #ccc; border-radius: 10px;'>
 									   <div class='box-body prod-body'>
-										   <img src='".$image."' width='100%' height='230px' class='thumbnail' style='border-radius: 5px;'>
+										   <img src='".$imageURL."' width='100%' height='180px' class='thumbnail' style='border-radius: 5px;'>
 										   <h5><a href='product.php?product=".$row['slug']."' style='color: black; font-size:medium; text-decoration: none;'>" . $row['name'] . "</a></h5>
 									   </div>
 									   <div class='box-footer' style='background-color: #f9f9f9; padding: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'>
-									   <b style='color: rgb(62, 62, 62); font-size: 18px;'>&#36; " . number_format($row['price'], 2) . "</b>
+									   <b style='color: rgb(62, 62, 62); font-size: 18px;'>EG " . number_format($row['price'], 2) . "</b>
 									   </div>
 								   </div>
 							   </div>
@@ -80,7 +80,7 @@
 	    </div>
 	  </div>
   
-  	<?php include 'includes/footer.php'; ?>
+  	
 </div>
 
 <?php include 'includes/scripts.php'; ?>

@@ -149,9 +149,9 @@ if (session_status() == PHP_SESSION_ACTIVE) {
     $conn->close();
 
     // تدمير الجلسة لمنع الحذف مرة أخرى عند تحديث الصفحة
-    session_destroy();
+    
 }
 ?>
-<?php include 'includes/remove.php'; ?>
+
 </body>
 </html>

@@ -2,24 +2,20 @@
 <?php
     $conn = $pdo->open();
 
-    $slug = $_GET['product'];
+    $product_id = 1; // Assuming the product ID you want to fetch is 1
 
     try {
-        $stmt = $conn->prepare("SELECT *, products.name AS prodname, category.name AS catname, products.id AS prodid FROM products LEFT JOIN category ON category.id=products.category_id WHERE slug = :slug");
-        $stmt->execute(['slug' => $slug]);
+        $stmt = $conn->prepare("SELECT * FROM recom WHERE Id = :id");
+        $stmt->execute(['id' => $product_id]);
         $product = $stmt->fetch();
+        
+        if (!$product) {
+            echo "Product not found.";
+            exit(); // Stop further execution
+        }
+
     } catch (PDOException $e) {
         echo "There is some problem in connection: " . $e->getMessage();
-    }
-
-    // page view
-    $now = date('Y-m-d');
-    if ($product['date_view'] == $now) {
-        $stmt = $conn->prepare("UPDATE products SET counter=counter+1 WHERE id=:id");
-        $stmt->execute(['id' => $product['prodid']]);
-    } else {
-        $stmt = $conn->prepare("UPDATE products SET counter=1, date_view=:now WHERE id=:id");
-        $stmt->execute(['id' => $product['prodid'], 'now' => $now]);
     }
 ?>
 <?php include 'includes/header.php'; ?>
@@ -30,7 +26,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+   
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
@@ -51,7 +47,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <img style="border-radius:15px" src="<?php echo $product['photo']; ?>" width="100%" class="zoom" data-magnify-src="<?php echo $product['photo']; ?>">
+                                <?php if (isset($product['Image_URL'])): ?>
+                                <img style="border-radius:15px" src="<?php echo $product['Image_URL']; ?>" width="100%" class="zoom" data-magnify-src="<?php echo $product['Image_URL']; ?>">
                                 <br><br>
                                 <form class="form-inline" id="productForm">
                                     <div class="form-group">
@@ -63,22 +60,23 @@
                                             <span class="input-group-btn">
                                                 <button type="button" id="add" class="btn btn-default btn-flat btn-lg"><i class="fa fa-plus"></i></button>
                                             </span>
-                                            <input type="hidden" value="<?php echo $product['prodid']; ?>" name="id">
+                                            <input type="hidden" value="<?php echo $product['Id']; ?>" name="id">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-lg btn-flat" style="background-color:black;border-radius:7px;"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                     </div>
                                 </form>
+                                <?php else: ?>
+                                <p>Product Image not available.</p>
+                                <?php endif; ?>
                             </div>
                             <div class="col-sm-6">
-                                <h1 class="page-header"><?php echo $product['prodname']; ?></h1>
-                                <h3><b>EG <?php echo number_format($product['price'], 2); ?></b></h3>
-                                <p><b>Category:</b> <a href="category.php?category=<?php echo $product['cat_slug']; ?>"><?php echo $product['catname']; ?></a></p>
-                                <p><b>Description:</b></p>
-                                <p><?php echo $product['description']; ?></p>
+                                <h1 class="page-header"><?php echo isset($product['Name_1']) ? $product['Name_1'] : 'Product Name'; ?></h1>
+                                <h3><b>&#36; <?php echo isset($product['Price']) ? number_format($product['Price'], 2) : '0.00'; ?></b></h3>
+                                <!-- Description can be added here if available -->
                             </div>
                         </div>
                         <br>
-                        <div class="fb-comments" data-href="http://localhost/ecommerce/product.php?product=<?php echo $slug; ?>" data-numposts="10" width="100%"></div> 
+                        <div class="fb-comments" data-href="http://localhost/ecommerce/product.php" data-numposts="10" width="100%"></div> 
                     </div>
                     <div class="col-sm-3">
                         <?php include 'includes/sidebar.php'; ?>

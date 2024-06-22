@@ -1,15 +1,15 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+<body class="hold-transition skin-blue layout-top-nav" style="background-color:#f1f4f2;">
+<div class="wrapper" style="background-color:#f1f4f2;">
 
 	<?php include 'includes/navbar.php'; ?>
 	 
-	  <div class="content-wrapper">
-	    <div class="container">
+	  <div class="content-wrapper" style="background-color:#f1f4f2;">
+	    <div class="container" style="background-color:#f1f4f2;">
 
 	      <!-- Main content -->
-	      <section class="content">
+	      <section class="content" style="background-color:#f1f4f2;">
 	        <div class="row">
 	        	<div class="col-sm-9">
 	            <?php
@@ -29,23 +29,23 @@
 						    $stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE :keyword");
 						    $stmt->execute(['keyword' => '%'.$_POST['keyword'].'%']);
 					 
-						    foreach ($stmt as $row) {
-						    	$highlighted = preg_filter('/' . preg_quote($_POST['keyword'], '/') . '/i', '<b>$0</b>', $row['name']);
-						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+							foreach ($stmt as $row) {
+						    	$imageURL = $row['photo'];
 						    	$inc = ($inc == 3) ? 1 : $inc + 1;
 	       						if($inc == 1) echo "<div class='row'>";
 	       						echo "
-	       							<div class='col-sm-4'>
-	       								<div class='box box-solid'>
-		       								<div class='box-body prod-body'>
-		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
-		       									<h5><a href='product.php?product=".$row['slug']."'>".$highlighted."</a></h5>
-		       								</div>
-		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'], 2)."</b>
-		       								</div>
-	       								</div>
-	       							</div>
+								   <div class='col-sm-4' style='margin-bottom: 20px;'>
+								   <div class='box box-solid' style='border: 1px solid #ccc; border-radius: 10px;'>
+									   <div class='box-body prod-body'>
+										   <img src='".$imageURL."' width='100%' height='180px' class='thumbnail' style='border-radius: 5px;'>
+										   <h5><a href='product.php?product=".$row['slug']."' style='color: black; font-size:medium; text-decoration: none;'>" . $row['name'] . "</a></h5>
+									   </div>
+									   <div class='box-footer' style='background-color: #f9f9f9; padding: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'>
+									   <b style='color: rgb(62, 62, 62); font-size: 18px;'>EG " . number_format($row['price'], 2) . "</b>
+									   </div>
+								   </div>
+							   </div>
+							   
 	       						";
 	       						if($inc == 3) echo "</div>";
 						    }

@@ -10,7 +10,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $query = "
-    SELECT `Id`, `name`, `Price`
+    SELECT `Id`, `name`, `Price`, `Image_URL`
         FROM `test`
         WHERE `Id` IN (
             SELECT `Id_1` FROM `test_1`
@@ -29,10 +29,10 @@ try {
 
     if ($stmt->rowCount() > 0) {
         echo "<table border='1'>";
-        echo "<tr><th>Id</th><th>Name</th><th>Price</th></tr>";
+        echo "<tr><th>Id</th><th>Name</th><th>Price</th><th>Image_URL</th></tr>";
         
         // Prepare the insert statement once outside the loop
-        $insertSql = "INSERT INTO recom (Id, Price, Name_1) VALUES (?, ?, ?)";
+        $insertSql = "INSERT INTO recom (Id, Price, Name_1, Image_URL) VALUES (?, ?, ?, ?)";
         $insertStmt = $pdo->prepare($insertSql);
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -40,15 +40,16 @@ try {
             echo "<td>" . htmlspecialchars($row['Id']) . "</td>";
             echo "<td>" . htmlspecialchars($row['name']) . "</td>";
             echo "<td>" . htmlspecialchars($row['Price']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['Image_URL']) . "</td>";
             echo "</tr>";
 
             // Access and insert each value directly inside the loop
             $Id = $row['Id'];
             $Name = $row['name'];
             $Price = $row['Price'];
-
+            $Image = $row['Image_URL'];
             // Insert into recom table
-            $insertStmt->execute([$Id, $Price, $Name]);
+            $insertStmt->execute([$Id, $Price, $Name, $Image]);
         }
         echo "</table>";
 
@@ -62,4 +63,5 @@ try {
 }
 header("Location: recommendation.php");
     exit;
+    
 ?>

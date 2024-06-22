@@ -180,7 +180,7 @@ paypal.Button.render({
                     	//total purchase
                         amount: { 
                         	total: total, 
-                        	currency: 'USD' 
+                        	currency: 'EG' 
                         }
                     }
                 ]
@@ -196,6 +196,6 @@ paypal.Button.render({
 
 }, '#paypal-button');
 </script>
-<?php include 'includes/remove.php'; ?>
+
 </body>
 </html>
