@@ -25,17 +25,6 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-              <div class="pull-right">
-                <form method="POST" class="form-inline" action="sales_print.php">
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range">
-                  </div>
-                  <button type="submit" class="btn btn-success btn-sm btn-flat" name="print"><span class="glyphicon glyphicon-print"></span> Print</button>
-                </form>
-              </div>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
@@ -68,7 +57,7 @@
                             <td>".date('M d, Y', strtotime($row['sales_date']))."</td>
                             <td>".$row['firstname'].' '.$row['lastname']."</td>
                             <td>".$row['pay_id']."</td>
-                            <td>&#36; ".number_format($total, 2)."</td>
+                            <td>EG ".number_format($total, 2)."</td>
                             <td><button type='button' class='btn btn-info btn-sm btn-flat transact' data-id='".$row['salesid']."'><i class='fa fa-search'></i> View</button></td>
                           </tr>
                         ";
