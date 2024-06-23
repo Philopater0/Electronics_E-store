@@ -18,7 +18,7 @@ $sql = "DELETE FROM user_answers";
     
         // تنفيذ الاستعلام والتحقق من النجاح
         if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
+            echo "";
         } else {
             echo "Error deleting record: " . $conn->error;
         }

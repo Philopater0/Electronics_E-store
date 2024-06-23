@@ -136,7 +136,7 @@ if ($result->num_rows > 0) {
         $conn->close();
     
         // تدمير الجلسة لمنع الحذف مرة أخرى عند تحديث الصفحة
-      
+        
         header("Location: test_1.php");
         exit;
     }  

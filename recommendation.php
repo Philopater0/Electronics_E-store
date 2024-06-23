@@ -66,8 +66,8 @@
     
     <?php include 'includes/footer.php'; ?>
 </div>
-
+<?php include 'includes/remove.php';?>
 <?php include 'includes/scripts.php'; ?>
-<?php include 'includes/remove.php'; ?>
+
 </body>
 </html>
