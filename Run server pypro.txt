@@ -1,0 +1,14 @@
+How to install in cmd  https://www.geeksforgeeks.org/how-to-install-flask-in-windows/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+cd pypro
+cd venv/Scripts or venv\Scripts\activate
+activate
+cd ../..
+cd api
+(venv) E:pypro\api>flask --app server run --host 0.0.0.0 --debug
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Website
+
+From GitHub: https://itsourcecode.com/free-projects/php-project/e-commerce-website-in-php-with-source-code/#google_vignette
+
+Admin: [admin@admin.com](mailto:admin@admin.com)    Password: password
